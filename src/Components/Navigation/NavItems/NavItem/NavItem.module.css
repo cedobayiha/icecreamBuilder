@@ -1,0 +1,56 @@
+.List {
+  display: flex;
+  list-style: none;
+  margin-right: 12px;
+  /* height: 90%; */
+  box-sizing: border-box;
+  width: auto;
+  align-items: center;
+  font-weight: bold;
+}
+
+.List a{
+  text-decoration: none;
+  color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.List :hover{
+  background-color: #80bfff;
+}
+
+.List a:hover,
+.List a:active,
+.List a.active {
+  background-color: #80bfff;
+  border-bottom: 4px solid #40A4C8;
+  color: #fff;
+}
+
+/* @media (min-width: 500px){
+  .List{
+  margin: 0;
+  width: auto;
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+}
+
+.List a{
+  color: #fff;
+  height: 100%;
+  padding: 16px 10px;
+  border-bottom: 4px solid transparent;
+
+}
+
+.List a:hover,
+.List a:active,
+.List a.active {
+  background-color: #8F5C2C;
+  border-bottom: 4px solid #40A4C8;
+  color: #fff;
+}
+} */

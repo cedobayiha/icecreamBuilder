@@ -1,0 +1,110 @@
+.Mint{
+  height: 100px;
+  /* width: 100px; */
+  border-radius: 45px;
+  background-color: #98ff98;
+}
+
+.Mango{
+  height: 100px;
+  border-radius: 40px;
+  width: 180px; 
+  margin: 0 auto; 
+  background-color: #ffc324;
+}
+
+.Chocolate{
+  height: 90px;
+  width: 183px; 
+  margin: 0 auto; 
+  border-radius: 100px;
+  background-color: #C49A6D;
+}
+
+.Vanilla{
+  height: 90px;
+  border-radius: 80px;
+  width: 185px;
+  margin: 0 auto;
+  background-color: #f3e5ab;
+}
+
+.Strawberry{
+  height: 100px;
+  border-radius: 100px;
+  width: 180px; 
+  margin: 0 auto; 
+  border-radius: 60px;
+  background-color: #fc5a8d;
+}
+
+.Queue{
+  height: 28px;
+  width: 1.5px;
+  border-radius: 100px;
+  background-color: green;
+  border: .5px solid black;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.Cream{
+  height: 17px;
+  width: 90px;
+  border-radius: 50px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.Cream1{
+  height: 10px;
+  width: 70px;
+  border-radius: 50px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.Cream2{
+  height: 13px;
+  width: 75px;
+  border-radius: 50px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.Cream0{
+  height: 5px;
+  width: 48px;
+  border-radius: 50px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+
+.Cherry{
+  height: 30px;
+  width: 35px;
+  border-radius: 100px;
+  background-color: #790604;
+  margin: 0 auto;
+  border: 1px solid black;
+}
+
+.Glass{
+  position:relative;
+  height: 15%;
+  width: 130px;
+  margin: 0 auto;
+  background-color:#C5A061;
+  box-shadow: 3px 5px #888888;
+  border-radius: 4px;
+}
+
+.Cone{
+  height: 10%;
+  width: 175px;
+  margin: 0 auto;
+  background-color:#C5A061;
+  box-shadow: 3px 5px #888888;
+  border-radius: 10px;
+}

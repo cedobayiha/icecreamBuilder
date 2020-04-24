@@ -1,0 +1,22 @@
+.Drawer{
+  display: flex;
+  flex-direction: column;
+  width: 40px;
+  height: 100%;
+  padding: 10px 0;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.Drawer div{
+  width: 90%;
+  height: 3px;
+  color: white;
+}
+
+@media (min-width: 500px){
+  .Drawer{
+    display: none;
+  }
+}
