@@ -16,7 +16,9 @@ let prices = {
 class IcecreamBuilder extends Component {
   state = {
     ingredients: null,
-    price: 2.00
+    price: 2.00,
+    noMas: false,
+    orderBtn: true
   }
 
   componentDidMount() {
@@ -24,6 +26,25 @@ class IcecreamBuilder extends Component {
       .then(res => {
         this.setState({ ingredients: res.data })
       })
+  }
+
+  updatePurchaseHandler = (ingredients) => {
+    const sum = Object.keys(ingredients).map(igKey => {
+      return ingredients[igKey]
+    }).reduce((sum, i) => {
+      return sum + i;
+    }, 0);
+    if (sum === 3) {
+      this.setState({ noMas: true })
+    } if (sum < 3) {
+      this.setState({ noMas: false })
+    }
+    if (sum >= 1) {
+      this.setState({ orderBtn: false })
+    }
+    if (sum === 0) {
+      this.setState({ orderBtn: true })
+    }
   }
 
   addIngredientsHandler = (type) => {
@@ -38,6 +59,7 @@ class IcecreamBuilder extends Component {
     this.setState({
       ingredients: updatedIngredients, price: newPrice
     })
+    this.updatePurchaseHandler(updatedIngredients);
   }
 
   removeIngredientsHandler = (type) => {
@@ -53,6 +75,7 @@ class IcecreamBuilder extends Component {
     const currentPrice = this.state.price;
     const newPrice = currentPrice - priceSub;
     this.setState({ ingredients: updatedIngredients, price: newPrice })
+    this.updatePurchaseHandler(updatedIngredients);
   }
 
 
@@ -73,7 +96,11 @@ class IcecreamBuilder extends Component {
             disabled={info}
             price={this.state.price}
             plusIngredients={this.addIngredientsHandler}
-            minusIngredients={this.removeIngredientsHandler} />
+            minusIngredients={this.removeIngredientsHandler}
+            purchase={this.state.purchasable}
+            noMas={this.state.noMas}
+            odrBtn={this.state.orderBtn}
+          />
         </Aux>
       )
     }

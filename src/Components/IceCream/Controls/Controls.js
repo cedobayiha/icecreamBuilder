@@ -12,7 +12,8 @@ const controlz = [
 ]
 
 const controls = (props) => {
-  console.log(props.disabled)
+  console.log(props.odrBtn)
+  console.log(props.noMas)
 
   return (
 
@@ -26,9 +27,11 @@ const controls = (props) => {
           type={ctrl.type}
           add={() => props.plusIngredients(ctrl.type)}
           dec={() => props.minusIngredients(ctrl.type)}
-          disabled={props.disabled[ctrl.type]} />
+          disabled={props.disabled[ctrl.type]}
+          noMas={props.noMas} />
       })}
-
+      <button className={styles.Order}
+        disabled={props.odrBtn}>Order Now</button>
     </div>
 
   )

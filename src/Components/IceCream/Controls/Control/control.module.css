@@ -34,3 +34,9 @@
     padding: 10px;
     border-radius: 5px;
 }
+
+.More:disabled{
+  background-color: #A9A9A9;
+  /* color: black; */
+  cursor: not-allowed;
+}

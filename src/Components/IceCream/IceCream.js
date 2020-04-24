@@ -5,9 +5,11 @@ import styles from './IceCream.module.css';
 
 
 const iceCream = (props) => {
+
   let changedIngredients = Object.keys(props.ingredients).map(ingKey => {
 
     return [...Array(props.ingredients[ingKey])].map((_, i) => {
+
       return <IcecreamIngredients type={ingKey} key={ingKey + i} />
     })
 
@@ -15,10 +17,11 @@ const iceCream = (props) => {
     .reduce((arr, el) => {
       return arr.concat(el)
     }, []);
-  console.log(changedIngredients.length)
+
   if (changedIngredients.length === 0) {
     changedIngredients = <h3>Please add a maximum of 3 ice cream flavours!</h3>
   }
+
 
   return (
     <Aux >

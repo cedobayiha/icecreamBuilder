@@ -1,5 +1,18 @@
 .Controls{
   width: 80%;
-  margin: 0 auto;
+  margin: 0 auto 30px auto;
   text-align: center;
+}
+
+.Order{
+  background-color:#FFFF33;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.Order:disabled{
+  background-color: #FAFAD2;
+  cursor: not-allowed;
 }
