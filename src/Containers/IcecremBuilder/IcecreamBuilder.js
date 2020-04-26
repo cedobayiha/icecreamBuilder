@@ -3,6 +3,8 @@ import IceCream from '../../Components/IceCream/IceCream';
 import Controls from '../../Components/IceCream/Controls/Controls';
 import axios from 'axios';
 import Aux from '../../hoc/Aux/Aux';
+import Modal from '../../Components/UI/Modal/Modal';
+import OrderSummary from '../../Components/OrderSummary/OrderSummary';
 
 
 let prices = {
@@ -18,7 +20,8 @@ class IcecreamBuilder extends Component {
     ingredients: null,
     price: 2.00,
     noMas: false,
-    orderBtn: true
+    orderBtn: true,
+    purchasing: false
   }
 
   componentDidMount() {
@@ -48,7 +51,7 @@ class IcecreamBuilder extends Component {
   }
 
   addIngredientsHandler = (type) => {
-    console.log(this.state.ingredients[type])
+
     const oldCount = this.state.ingredients[type];
     const newCount = oldCount + 1;
     const updatedIngredients = { ...this.state.ingredients }
@@ -79,9 +82,17 @@ class IcecreamBuilder extends Component {
   }
 
 
+  purchaseHandler = () => {
+    this.setState({ purchasing: true })
+  }
+
+  cancelPurchaseHandler = () => {
+    this.setState({ purchasing: false })
+  }
+
 
   render() {
-
+    let orderOrSpinner = null;
     let iceCream = null;
     let info = { ...this.state.ingredients };
     for (let key in info) {
@@ -100,13 +111,18 @@ class IcecreamBuilder extends Component {
             purchase={this.state.purchasable}
             noMas={this.state.noMas}
             odrBtn={this.state.orderBtn}
+            purchase={this.purchaseHandler}
           />
         </Aux>
       )
+      orderOrSpinner = <OrderSummary price={this.state.price} ingredients={this.state.ingredients} close={this.cancelPurchaseHandler} />
     }
 
     return (
       <div>
+        <Modal modalClosed={this.cancelPurchaseHandler} show={this.state.purchasing}>
+          {orderOrSpinner}
+        </Modal>
         {iceCream}
       </div>
     )

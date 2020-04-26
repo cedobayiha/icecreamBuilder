@@ -9,12 +9,12 @@
 
 .Contain{
   background-color: #D6EEF0;
-  height: 600px;
+  height: 670px;
   margin: 0 auto;
 }
 
 .FullSundae{
-  height:500px;
+  height:650px;
   position:static;
   width: 240px;
   margin: auto;
@@ -23,13 +23,13 @@
 
 }
 
-.FullSundae > .iceCreamScoop{
+/* .FullSundae > .iceCreamScoop{
   height:100px;
 }
 
 .Glass{
   position:relative;
-  height: 50px;
+  height: 20px;
   width: 165px;
   margin: 0 auto;
   background-color:#FFFFE0;
@@ -38,17 +38,17 @@
 }
 
 .Cone{
-  height: 25px;
+  height: 10px;
   width: 200px;
   margin: 0 auto;
   background-color:#FFFFE0;
   box-shadow: 3px 5px #888888;
   border-radius: 10px;
-}
+} */
 
-.Glass .iceCreamScoop{
+/* .Glass .iceCreamScoop{
   height: 33.3%;
   position:relative;
   z-index: 1;
   display: flex;
-}
+} */

@@ -38,7 +38,7 @@
   border-radius: 100px;
   width: 185px;
   margin: 0 auto;
-  background-color: #f3e5ab;
+  background-color: #FFFFCC;
 }
 
 
@@ -97,7 +97,7 @@
 
 .Glass{
   position:relative;
-  height: 20%;
+  height: 12%;
   width: 130px;
   margin: 0 auto;
   background-color:#FFE4B5;
@@ -106,7 +106,7 @@
 }
 
 .Cone{
-  height: 12%;
+  height: 7%;
   width: 175px;
   margin: 0 auto;
   background-color:#FFE4B5;

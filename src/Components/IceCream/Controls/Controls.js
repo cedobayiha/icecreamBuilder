@@ -31,7 +31,7 @@ const controls = (props) => {
           noMas={props.noMas} />
       })}
       <button className={styles.Order}
-        disabled={props.odrBtn}>Order Now</button>
+        disabled={props.odrBtn} onClick={props.purchase}>Order Now</button>
     </div>
 
   )

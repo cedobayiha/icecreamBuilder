@@ -31,9 +31,7 @@ const iceCream = (props) => {
             <IcecreamIngredients type="cream" />
 
             {changedIngredients}
-            {/* <IcecreamIngredients type="chocolate" />
-            <IcecreamIngredients type="vanilla" />
-            <IcecreamIngredients type="mango" /> */}
+
             <IcecreamIngredients type="cone" />
           </div>
         </div>
