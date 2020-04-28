@@ -29,9 +29,7 @@ const iceCream = (props) => {
         <div className={styles.Wrapper}>
           <div className={styles.FullSundae}>
             <IcecreamIngredients type="cream" />
-
             {changedIngredients}
-
             <IcecreamIngredients type="cone" />
           </div>
         </div>

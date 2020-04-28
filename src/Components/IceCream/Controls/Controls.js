@@ -12,8 +12,7 @@ const controlz = [
 ]
 
 const controls = (props) => {
-  console.log(props.odrBtn)
-  console.log(props.noMas)
+
 
   return (
 

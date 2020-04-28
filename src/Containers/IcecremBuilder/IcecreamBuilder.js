@@ -90,6 +90,14 @@ class IcecreamBuilder extends Component {
     this.setState({ purchasing: false })
   }
 
+  proceedHandler = () => {
+    console.log(this.props.history)
+    this.props.history.push({
+      pathname: '/checkout',
+      ingredients: this.state.ingredients
+    })
+  }
+
 
   render() {
     let orderOrSpinner = null;
@@ -115,7 +123,7 @@ class IcecreamBuilder extends Component {
           />
         </Aux>
       )
-      orderOrSpinner = <OrderSummary price={this.state.price} ingredients={this.state.ingredients} close={this.cancelPurchaseHandler} />
+      orderOrSpinner = <OrderSummary price={this.state.price} ingredients={this.state.ingredients} close={this.cancelPurchaseHandler} proceed={this.proceedHandler} />
     }
 
     return (
