@@ -93,8 +93,8 @@ class IcecreamBuilder extends Component {
   proceedHandler = () => {
     console.log(this.props.history)
     this.props.history.push({
-      pathname: '/checkout',
-      ingredients: this.state.ingredients
+      pathname: '/checkout'
+
     })
   }
 

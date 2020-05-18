@@ -5,20 +5,11 @@ import styles from '../../Components/IceCream/IceCream.module.css';
 
 class Checkout extends Component {
 
-
-
-
-
   render() {
-    // console.log(this.props.location.ingredients)
     let changedIngredients = Object.keys(this.props.location.ingredients).map((ingKey, i) => {
-
       return [...Array(this.props.ingredients[ingKey])].map((_, i) => {
-
-
         return <IcecreamIngredients type={ingKey} key={ingKey + i} />
       })
-
     })
       .reduce((arr, el) => {
         return arr.concat(el)
