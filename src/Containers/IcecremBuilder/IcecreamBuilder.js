@@ -92,8 +92,15 @@ class IcecreamBuilder extends Component {
 
   proceedHandler = () => {
     console.log(this.props.history)
+    let queryParams = [];
+    for (let i in this.state.ingredients) {
+      queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
+    }
+    queryParams.push("price=" + this.state.price)
+    const queryString = queryParams.join('&')
     this.props.history.push({
-      pathname: '/checkout'
+      pathname: '/checkout',
+      search: '?' + queryString
 
     })
   }
@@ -116,7 +123,7 @@ class IcecreamBuilder extends Component {
             price={this.state.price}
             plusIngredients={this.addIngredientsHandler}
             minusIngredients={this.removeIngredientsHandler}
-            purchase={this.state.purchasable}
+            purchasing={this.state.purchasing}
             noMas={this.state.noMas}
             odrBtn={this.state.orderBtn}
             purchase={this.purchaseHandler}
