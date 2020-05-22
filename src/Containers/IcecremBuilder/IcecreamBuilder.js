@@ -91,7 +91,7 @@ class IcecreamBuilder extends Component {
   }
 
   proceedHandler = () => {
-    console.log(this.props.history)
+    // console.log(this.props.history)
     let queryParams = [];
     for (let i in this.state.ingredients) {
       queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))

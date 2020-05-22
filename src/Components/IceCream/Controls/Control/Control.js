@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './control.module.css'
 
 const control = (props) => {
-  console.log(props.disabled)
+
   return (
     <div className={styles.Control}>
       <p className={styles.Label}><strong>{props.label}</strong></p>

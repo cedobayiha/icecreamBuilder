@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-// import IcecreamIngredients from '../../Components/IceCream/IcecreamIngredients/IcecreamIngredients';
-import Aux from '../../hoc/Aux/Aux';
 import styles from '../../Components/IceCream/IceCream.module.css';
 import { Route } from 'react-router-dom'
-// import IceCream from '../../Components/IceCream/IceCream';
 import CheckoutSummary from '../../Components/CheckoutSummary/CheckoutSum';
 import ContactInfo from './ContactInfo/ContactInfo';
 
@@ -38,14 +35,18 @@ class Checkout extends Component {
 
   render() {
 
+
     return (
-      <Aux>
+      <div>
         <CheckoutSummary ingredients={this.state.ingredients}
           cancel={this.checkoutCancel}
           proceed={this.checkoutProceed}
         />
-        <Route path={this.props.match.path + 'contact-info'} render={(props) => <ContactInfo />} />
-      </Aux>
+        <Route path={this.props.match.path + '/contact-info'} render={(props) => (<ContactInfo
+          ingredients={this.state.ingredients}
+          price={this.state.price}
+          {...props} />)} />
+      </div>
     )
   }
 
