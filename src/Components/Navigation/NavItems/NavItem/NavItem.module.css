@@ -16,19 +16,25 @@
   width: 100%;
 }
 
-.List :hover{
+/* .List :hover{
   background-color: #80bfff;
-}
+} */
 
 .List a:hover,
 .List a:active,
 .List a.active {
   background-color: #80bfff;
   border-bottom: 4px solid #40A4C8;
+  height: 100%;
   color: #fff;
 }
 
-/* @media (min-width: 500px){
+
+
+
+
+
+ @media (max-width: 500px){
   .List{
   margin: 0;
   width: auto;
@@ -39,7 +45,7 @@
 }
 
 .List a{
-  color: #fff;
+  color: #99CCCC;
   height: 100%;
   padding: 16px 10px;
   border-bottom: 4px solid transparent;
@@ -49,8 +55,8 @@
 .List a:hover,
 .List a:active,
 .List a.active {
-  background-color: #8F5C2C;
+  background-color: #80bfff;
   border-bottom: 4px solid #40A4C8;
   color: #fff;
 }
-} */
+} 

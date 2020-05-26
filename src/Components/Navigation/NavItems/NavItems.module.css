@@ -1,19 +1,20 @@
 
 
-.NavigationItems {
+.NavItems {
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
   align-Items: center;
   height: 100%;
 }
 
 
 
-/* @media (min-width: 500px) {
-  .NavigationItems {
-    flex-flow: row;
+
+@media (max-width: 500px) {
+  .NavItems {
+    display: block;
   }
-} */
+}

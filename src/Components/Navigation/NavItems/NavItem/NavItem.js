@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './NavItem.module.css'
 import { NavLink } from 'react-router-dom'
-// import Aux from '../../../../hoc/Aux/Aux';
+
 
 
 const navItem = (props) => {

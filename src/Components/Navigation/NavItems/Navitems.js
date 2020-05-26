@@ -7,7 +7,7 @@ import NavItem from './NavItem/NavItem';
 const NavItems = (props) => {
 
   return (
-    <ul className={styles.NavigationItems}>
+    <ul className={styles.NavItems}>
       <NavItem link='/' exact>
         iceCream Builder
       </NavItem>

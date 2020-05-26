@@ -19,7 +19,7 @@ const checkoutSummary = (props) => {
 
         </div>
       </div>
-      <div>
+      <div className={styles.Btn}>
         <Link to="/">
           <Button btnType="Danger" clicked={props.cancel}>CANCEL</Button>
         </Link>
