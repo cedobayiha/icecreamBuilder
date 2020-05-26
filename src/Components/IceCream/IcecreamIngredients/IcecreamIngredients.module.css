@@ -97,7 +97,7 @@
 
 .Glass{
   position:relative;
-  height: 12%;
+  height: 15%;
   width: 130px;
   margin: 0 auto;
   background-color:#FFE4B5;
@@ -106,7 +106,7 @@
 }
 
 .Cone{
-  height: 7%;
+  height: 10%;
   width: 175px;
   margin: 0 auto;
   background-color:#FFE4B5;

@@ -1,6 +1,6 @@
 .Controls{
-  width: 97%;
-  margin: 0 auto 30px auto;
+  width: 100%;
+  margin: 0 auto 10px auto;
   text-align: center;
   background-color: #99CCCC;
   padding: 20px;
@@ -18,3 +18,22 @@
   background-color: #FAFAD2;
   cursor: not-allowed;
 }
+
+@media (max-width: 500px){
+  .Controls{
+    width: 90%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 770px){
+  .Controls{
+    width: 95%;
+  }
+}
+
+@media (min-width: 771px) and (max-width: 1030px){
+  .Controls{
+    width: 96%;
+  }
+}
+

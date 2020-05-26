@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../../Components/UI/Input/Input';
+import Button from '../../../Components/UI/Button/Button';
 import axios from 'axios';
 import styles from './ContactInfo.module.css';
 
@@ -12,7 +13,12 @@ class ContactInfo extends Component {
           placeholder: 'Your name',
           type: 'text'
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       address: {
         elemType: 'input',
@@ -20,15 +26,27 @@ class ContactInfo extends Component {
           placeholder: 'Your address',
           type: 'text'
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       zipCode: {
         elemType: 'input',
         elemConfig: {
-          placeholder: 'Your postal code',
+          placeholder: 'Your postal code (in this format ---> K5T 1R3)',
           type: 'text'
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true,
+          minLength: 7,
+          maxLength: 7
+        },
+        valid: false,
+        touched: false
       },
       city: {
         elemType: 'input',
@@ -36,7 +54,12 @@ class ContactInfo extends Component {
           placeholder: 'Your City',
           type: 'text'
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       province: {
         elemType: 'input',
@@ -44,7 +67,12 @@ class ContactInfo extends Component {
           placeholder: 'Your Province',
           type: 'text'
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       email: {
         elemType: 'input',
@@ -52,7 +80,12 @@ class ContactInfo extends Component {
           placeholder: 'Your Province',
           type: 'email'
         },
-        value: ""
+        value: "",
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false
       },
       deliveryMode: {
         elemType: 'select',
@@ -63,14 +96,32 @@ class ContactInfo extends Component {
             { value: 'basic', displayVal: 'Basic' }
           ]
         },
-        value: ""
+        value: "",
+        validation: {},
+        valid: true
       }
     },
     formIsValid: false,
     ordered: false
   }
 
-  onSubmit = (e) => {
+  verified = (value, rules) => {
+    let isValid = true;
+
+    if (rules.required) {
+      isValid = value.trim() !== '';
+    }
+    if (rules.minLength) {
+      isValid = value.length >= rules.minLength && isValid
+    }
+    if (rules.maxLength) {
+      isValid = value.length <= rules.maxLength && isValid
+    }
+
+    return isValid
+  }
+
+  submitHandler = (e) => {
     e.preventDefault();
 
     this.setState({ ordered: true })
@@ -102,12 +153,23 @@ class ContactInfo extends Component {
     }
   }
 
-  onChange = (e, inputId) => {
+  inputChangeHandler = (e, inputId) => {
     const orderedForm = this.state.orderForm;
     const targeted = orderedForm[inputId];
-    targeted.value = e.target.value
 
-    this.setState()
+    targeted.value = e.target.value;
+
+    targeted.valid = this.verified(targeted.value, targeted.validation);
+
+    targeted.touched = true;
+
+    let formIsValid = true;
+
+    for (let iptSel in orderedForm) {
+      formIsValid = orderedForm[iptSel].valid && formIsValid
+    }
+
+    this.setState({ orderForm: orderedForm, formIsValid: formIsValid })
   }
 
 
@@ -121,18 +183,26 @@ class ContactInfo extends Component {
     }
 
     let form = (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.submitHandler}>
         {formsArr.map(input => {
           return <Input
             key={input.id}
+            invalid={!input.config.valid}
             label={input.id}
             elemConfig={input.config.elemConfig}
             elemtype={input.config.elemType}
+            placeholder={input.config.elemConfig.placeholder}
             value={input.config.value}
-            change={(e) => (this.onChange(e, input.id))}
+            touched={input.config.touched}
+            shouldValidate={input.config.validation}
+            change={(e) => (this.inputChangeHandler(e, input.id))}
           />
         })}
-
+        <Button
+          btnType="Success"
+          disabled={!this.state.formIsValid}>
+          ORDER
+        </Button>
       </form>
     )
     return (

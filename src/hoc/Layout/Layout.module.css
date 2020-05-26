@@ -1,3 +1,12 @@
+@media screen and (min-width: 960px) and (max-width: 1200px){
 .Site{
-  margin: 56px 72px 0 72px;
+  margin-top: 56px ;
+}
+}
+
+@media screen and (max-width: 600px){
+  .Site{
+    margin-top: 56px;
+    width: 100%;
+  }
 }

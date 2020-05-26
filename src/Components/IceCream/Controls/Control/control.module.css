@@ -40,3 +40,9 @@
   /* color: black; */
   cursor: not-allowed;
 }
+
+@media (max-width: 500px){
+  .Control{
+    width: 100%;
+  }
+}

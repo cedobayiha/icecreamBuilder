@@ -23,8 +23,11 @@
 
 
 
-@media (max-width:499px){
+@media (max-width:500px){
   .DesktopOnly{
     display: none;
+  }
+  .Toolbar{
+    width: 100%;
   }
 }

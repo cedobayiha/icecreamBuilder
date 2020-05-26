@@ -1,16 +1,18 @@
 .Wrapper{
   width: 400px;
   margin: 0 auto;
-  padding-top: 40px;
+  /* padding-top: 30px; */
   text-align: center;
   display: flex;
-
+  height: 600px;
+  background-color: #D6EEF0;
 }
 
 .Contain{
   background-color: #D6EEF0;
-  height: 670px;
+  height: 650px;
   margin: 0 auto;
+
 }
 
 .FullSundae{
@@ -20,35 +22,73 @@
   margin: auto;
   margin-top: 10px;
   overflow: scroll;
+  /* background-color: #F0FFF0; */
 
 }
 
-/* .FullSundae > .iceCreamScoop{
-  height:100px;
+@media (min-width: 1000px){
+  .FullSundae{
+    height: 650px;
+  }
 }
 
-.Glass{
-  position:relative;
-  height: 20px;
-  width: 165px;
-  margin: 0 auto;
-  background-color:#FFFFE0;
-  box-shadow: 3px 5px #888888;
-  border-radius: 4px;
+@media (max-width: 500px){
+  .FullSundae{
+    padding-top: 20px;
+    width: 66%;
+    height: 625px;
+    margin: 0 auto;
+  }
+  .Wrapper{
+    width: 100%;
+  }
+  .Contain{
+    width: 100%;
+    padding-bottom: 10px;
+  }
 }
 
-.Cone{
-  height: 10px;
-  width: 200px;
-  margin: 0 auto;
-  background-color:#FFFFE0;
-  box-shadow: 3px 5px #888888;
-  border-radius: 10px;
-} */
 
-/* .Glass .iceCreamScoop{
-  height: 33.3%;
-  position:relative;
-  z-index: 1;
-  display: flex;
-} */
+
+
+
+@media (min-width: 501px) and (max-width: 770px){
+  .FullSundae{
+    padding-top: 20px;
+    width: 45%;
+    height: 650px;
+    margin: 0 auto;
+    
+  }
+  .Wrapper{
+    width: 100%;
+    
+  }
+  .Contain{
+    margin-top: 56px;
+    width: 100%;
+    height: 700px;
+  }
+}
+
+@media (min-width: 771px) and (max-width: 1025px){
+  .FullSundae{
+    width: 60%;
+    height: 630px;
+    margin: 0 auto;
+  }
+
+  .Contain{
+    padding-top: 70px;
+    width: 100%;
+    height: 700px;
+  }
+}
+
+@media (min-width: 1026px) and (max-width: 1450px){
+  .Contain{
+    margin-top: 56px;
+    width: 100%;
+    height: 700px;
+  }
+}

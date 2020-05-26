@@ -15,7 +15,8 @@ const input = (props) => {
       inputVar = <input className={inputStyles.join(' ')}
         {...props.elemCofig}
         onChange={props.change}
-        value={props.value} />;
+        value={props.value}
+        placeholder={props.placeholder} />;
       break;
     case ('select'):
       inputVar = <select

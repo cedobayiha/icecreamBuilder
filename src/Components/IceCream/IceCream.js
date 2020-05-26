@@ -19,7 +19,7 @@ const iceCream = (props) => {
     }, []);
 
   if (changedIngredients.length === 0) {
-    changedIngredients = <h3>Please add a maximum of 3 ice cream flavours!</h3>
+    changedIngredients = <h3 style={{ margin: '100px 0' }}>Please add a maximum of 3 ice cream flavours!</h3>
   }
 
 

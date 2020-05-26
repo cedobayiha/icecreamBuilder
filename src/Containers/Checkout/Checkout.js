@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../../Components/IceCream/IceCream.module.css';
+// import styles from '../../Components/IceCream/IceCream.module.css';
 import { Route } from 'react-router-dom'
 import CheckoutSummary from '../../Components/CheckoutSummary/CheckoutSum';
 import ContactInfo from './ContactInfo/ContactInfo';
