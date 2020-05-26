@@ -123,7 +123,7 @@ class ContactInfo extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-
+    console.log(this.props.price)
     this.setState({ ordered: true })
     const formInfo = {}
 
@@ -138,12 +138,15 @@ class ContactInfo extends Component {
     }
 
     if (orderForm.price === 0) {
+      alert('Select some icecream flavours')
       this.props.history.push('/')
     }
 
     if (orderForm.price > 2) {
-      axios.post('https://icecream-3aa92.firebaseio.com/orders', orderForm)
+
+      axios.post('https://icecream-3aa92.firebaseio.com/orders.json', orderForm)
         .then(res => {
+
           this.setState({ ordered: false })
           this.props.history.push('/');
         })
