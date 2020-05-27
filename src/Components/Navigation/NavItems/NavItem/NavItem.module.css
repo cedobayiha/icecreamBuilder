@@ -23,7 +23,10 @@
 .List a:hover,
 .List a:active,
 .List a.active {
- color: #80bfff;
+ /* color: #80bfff; */
+ color:#5F9EA0;
+ font-weight: 600;
+ font-size: 1.1rem;
   /* border-bottom: 4px solid #40A4C8; */
   height: 100%;
   /* color: #fff; */
