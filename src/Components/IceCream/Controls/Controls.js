@@ -27,10 +27,10 @@ const controls = (props) => {
           add={() => props.plusIngredients(ctrl.type)}
           dec={() => props.minusIngredients(ctrl.type)}
           disabled={props.disabled[ctrl.type]}
-          noMas={props.noMas} />
+          noMas={!props.noMas} />
       })}
       <button className={styles.Order}
-        disabled={props.odrBtn} onClick={props.purchase}>Order Now</button>
+        disabled={!props.odrBtn} onClick={props.purchase}>Order Now</button>
     </div>
 
   )

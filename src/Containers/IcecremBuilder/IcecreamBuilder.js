@@ -1,34 +1,34 @@
 import React, { Component } from 'react';
 import IceCream from '../../Components/IceCream/IceCream';
 import Controls from '../../Components/IceCream/Controls/Controls';
-import axios from 'axios';
+// import axios from 'axios';
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../../Components/UI/Modal/Modal';
 import OrderSummary from '../../Components/OrderSummary/OrderSummary';
+import * as actionType from '../../store/actions/action';
+import { connect } from 'react-redux';
 
 
-let prices = {
-  mango: 2.50,
-  vanilla: 1.80,
-  mint: 2.50,
-  strawberry: 2.10,
-  chocolate: 2.25
-}
+// let prices = {
+//   mango: 2.50,
+//   vanilla: 1.80,
+//   mint: 2.50,
+//   strawberry: 2.10,
+//   chocolate: 2.25
+// }
 
 class IcecreamBuilder extends Component {
   state = {
-    ingredients: null,
-    price: 2.00,
     noMas: false,
-    orderBtn: true,
+    orderBtn: false,
     purchasing: false
   }
 
   componentDidMount() {
-    axios.get('https://icecream-3aa92.firebaseio.com/ingredients.json')
-      .then(res => {
-        this.setState({ ingredients: res.data })
-      })
+    // axios.get('https://icecream-3aa92.firebaseio.com/ingredients.json')
+    //   .then(res => {
+    //     this.setState({ ingredients: res.data })
+    //   })
   }
 
   updatePurchaseHandler = (ingredients) => {
@@ -42,44 +42,55 @@ class IcecreamBuilder extends Component {
     } if (sum < 3) {
       this.setState({ noMas: false })
     }
-    if (sum >= 1) {
-      this.setState({ orderBtn: false })
-    }
-    if (sum === 0) {
-      this.setState({ orderBtn: true })
-    }
+    //if (sum >= 1) {
+    //return false
+    // this.setState({ orderBtn: false })
+    //}
+    //if (sum === 0) {
+    //return true
+    // this.setState({ orderBtn: true })
+    //}
   }
 
-  addIngredientsHandler = (type) => {
-
-    const oldCount = this.state.ingredients[type];
-    const newCount = oldCount + 1;
-    const updatedIngredients = { ...this.state.ingredients }
-    updatedIngredients[type] = newCount;
-    const priceAddition = prices[type];
-    const oldPrice = this.state.price;
-    const newPrice = priceAddition + oldPrice;
-    this.setState({
-      ingredients: updatedIngredients, price: newPrice
-    })
-    this.updatePurchaseHandler(updatedIngredients);
+  updateOrderBtnHandler = ingredients => {
+    const sum = Object.keys(ingredients).map(igKey => {
+      return ingredients[igKey]
+    }).reduce((sum, i) => {
+      return sum + i;
+    }, 0);
+    return sum > 0;
   }
 
-  removeIngredientsHandler = (type) => {
+  // addIngredientsHandler = (type) => {
 
-    let oldCount = this.state.ingredients[type];
-    let newCount = null;
-    if (oldCount > 0) {
-      newCount = oldCount - 1
-    }
-    const updatedIngredients = { ...this.state.ingredients };
-    updatedIngredients[type] = newCount;
-    const priceSub = prices[type];
-    const currentPrice = this.state.price;
-    const newPrice = currentPrice - priceSub;
-    this.setState({ ingredients: updatedIngredients, price: newPrice })
-    this.updatePurchaseHandler(updatedIngredients);
-  }
+  //   const oldCount = this.state.ingredients[type];
+  //   const newCount = oldCount + 1;
+  //   const updatedIngredients = { ...this.state.ingredients }
+  //   updatedIngredients[type] = newCount;
+  //   const priceAddition = prices[type];
+  //   const oldPrice = this.state.price;
+  //   const newPrice = priceAddition + oldPrice;
+  //   this.setState({
+  //     ingredients: updatedIngredients, price: newPrice
+  //   })
+  //   this.updatePurchaseHandler(updatedIngredients);
+  // }
+
+  // removeIngredientsHandler = (type) => {
+
+  //   let oldCount = this.state.ingredients[type];
+  //   let newCount = null;
+  //   if (oldCount > 0) {
+  //     newCount = oldCount - 1
+  //   }
+  //   const updatedIngredients = { ...this.state.ingredients };
+  //   updatedIngredients[type] = newCount;
+  //   const priceSub = prices[type];
+  //   const currentPrice = this.state.price;
+  //   const newPrice = currentPrice - priceSub;
+  //   this.setState({ ingredients: updatedIngredients, price: newPrice })
+  //   this.updatePurchaseHandler(updatedIngredients);
+  // }
 
 
   purchaseHandler = () => {
@@ -109,28 +120,30 @@ class IcecreamBuilder extends Component {
   render() {
     let orderOrSpinner = null;
     let iceCream = null;
-    let info = { ...this.state.ingredients };
+    let info = { ...this.props.ings };
     for (let key in info) {
       info[key] = info[key] <= 0;
     }
-    if (this.state.ingredients) {
+    if (this.props.ings) {
       iceCream = (
         <Aux>
-          <IceCream ingredients={this.state.ingredients} />
+          <IceCream ingredients={this.props.ings} />
           <Controls
-            ingredients={this.state.ingredients}
+            ingredients={this.props.ings}
             disabled={info}
-            price={this.state.price}
-            plusIngredients={this.addIngredientsHandler}
-            minusIngredients={this.removeIngredientsHandler}
+            price={this.props.price}
+            plusIngredients={this.props.onAddIngredients}
+            minusIngredients={this.props.onRemoveIngredients}
             purchasing={this.state.purchasing}
-            noMas={this.state.noMas}
-            odrBtn={this.state.orderBtn}
+            noMas={this.updatePurchaseHandler(this.props.ings)
+              // this.state.noMas
+            }
+            odrBtn={this.updateOrderBtnHandler(this.props.ings)}
             purchase={this.purchaseHandler}
           />
         </Aux>
       )
-      orderOrSpinner = <OrderSummary price={this.state.price} ingredients={this.state.ingredients} close={this.cancelPurchaseHandler} proceed={this.proceedHandler} />
+      orderOrSpinner = <OrderSummary price={this.props.price} ingredients={this.props.ings} close={this.cancelPurchaseHandler} proceed={this.proceedHandler} />
     }
 
     return (
@@ -144,4 +157,22 @@ class IcecreamBuilder extends Component {
   }
 }
 
-export default IcecreamBuilder
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddIngredients: (ingName) => dispatch({
+      type: actionType.ADD_INGREDIENT, ingredientsName: ingName
+    }),
+    onRemoveIngredients: (ingName) => dispatch({
+      type: actionType.REMOVE_INGREDIENT, ingredientsName: ingName
+    })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(IcecreamBuilder)
