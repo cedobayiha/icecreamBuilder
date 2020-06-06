@@ -19,8 +19,6 @@ import { connect } from 'react-redux';
 
 class IcecreamBuilder extends Component {
   state = {
-    noMas: false,
-    orderBtn: false,
     purchasing: false
   }
 
@@ -85,9 +83,6 @@ class IcecreamBuilder extends Component {
       return true
     }
 
-    // if (sum < 3) {
-    //   this.setState({ noMas: false })
-    // }
   }
 
   updateOrderBtnHandler = ingredients => {
