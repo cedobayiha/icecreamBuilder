@@ -31,35 +31,18 @@ class IcecreamBuilder extends Component {
     //   })
   }
 
-  updatePurchaseHandler = (ingredients) => {
-    const sum = Object.keys(ingredients).map(igKey => {
-      return ingredients[igKey]
-    }).reduce((sum, i) => {
-      return sum + i;
-    }, 0);
-    if (sum === 3) {
-      this.setState({ noMas: true })
-    } if (sum < 3) {
-      this.setState({ noMas: false })
-    }
-    //if (sum >= 1) {
-    //return false
-    // this.setState({ orderBtn: false })
-    //}
-    //if (sum === 0) {
-    //return true
-    // this.setState({ orderBtn: true })
-    //}
-  }
 
-  updateOrderBtnHandler = ingredients => {
-    const sum = Object.keys(ingredients).map(igKey => {
-      return ingredients[igKey]
-    }).reduce((sum, i) => {
-      return sum + i;
-    }, 0);
-    return sum > 0;
-  }
+  //if (sum >= 1) {
+  //return false
+  // this.setState({ orderBtn: false })
+  //}
+  //if (sum === 0) {
+  //return true
+  // this.setState({ orderBtn: true })
+  //}
+
+
+
 
   // addIngredientsHandler = (type) => {
 
@@ -91,6 +74,30 @@ class IcecreamBuilder extends Component {
   //   this.setState({ ingredients: updatedIngredients, price: newPrice })
   //   this.updatePurchaseHandler(updatedIngredients);
   // }
+
+  updatePurchaseHandler = (ingredients) => {
+    const sum = Object.keys(ingredients).map(igKey => {
+      return ingredients[igKey]
+    }).reduce((sum, i) => {
+      return sum + i;
+    }, 0);
+    if (sum === 3) {
+      return true
+    }
+
+    // if (sum < 3) {
+    //   this.setState({ noMas: false })
+    // }
+  }
+
+  updateOrderBtnHandler = ingredients => {
+    const sum = Object.keys(ingredients).map(igKey => {
+      return ingredients[igKey]
+    }).reduce((sum, i) => {
+      return sum + i;
+    }, 0);
+    return sum > 0;
+  }
 
 
   purchaseHandler = () => {
