@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Input from '../../../Components/UI/Input/Input';
 import Button from '../../../Components/UI/Button/Button';
 import axios from 'axios';
@@ -123,7 +124,7 @@ class ContactInfo extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    console.log(this.props.price)
+
     this.setState({ ordered: true })
     const formInfo = {}
 
@@ -132,7 +133,7 @@ class ContactInfo extends Component {
     }
 
     const orderForm = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price,
       orderInfo: formInfo
     }
@@ -218,4 +219,11 @@ class ContactInfo extends Component {
 
 }
 
-export default ContactInfo;
+const mapStateToProps = state => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice
+  }
+}
+
+export default connect(mapStateToProps)(ContactInfo);

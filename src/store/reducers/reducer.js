@@ -8,10 +8,7 @@ const initialState = {
     strawberry: 0,
     vanilla: 0
   },
-  totalPrice: 3,
-  noMas: false,
-
-
+  totalPrice: 3
 }
 
 const prices = {

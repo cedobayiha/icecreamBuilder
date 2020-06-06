@@ -30,18 +30,6 @@ class IcecreamBuilder extends Component {
   }
 
 
-  //if (sum >= 1) {
-  //return false
-  // this.setState({ orderBtn: false })
-  //}
-  //if (sum === 0) {
-  //return true
-  // this.setState({ orderBtn: true })
-  //}
-
-
-
-
   // addIngredientsHandler = (type) => {
 
   //   const oldCount = this.state.ingredients[type];
@@ -105,17 +93,13 @@ class IcecreamBuilder extends Component {
 
   proceedHandler = () => {
     // console.log(this.props.history)
-    let queryParams = [];
-    for (let i in this.state.ingredients) {
-      queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
-    }
-    queryParams.push("price=" + this.state.price.toFixed(2))
-    const queryString = queryParams.join('&')
-    this.props.history.push({
-      pathname: '/checkout',
-      search: '?' + queryString
-
-    })
+    // let queryParams = [];
+    // for (let i in this.state.ingredients) {
+    //   queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
+    // }
+    // queryParams.push("price=" + this.state.price.toFixed(2))
+    // const queryString = queryParams.join('&')
+    this.props.history.push('/checkout')
   }
 
 
