@@ -39,6 +39,8 @@ class IcecreamIngredients extends Component {
           <div className={styles.Glass}></div>
         </Aux>);
         break;
+      default:
+        break;
     }
 
 

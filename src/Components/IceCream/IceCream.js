@@ -6,7 +6,9 @@ import styles from './IceCream.module.css';
 
 const iceCream = (props) => {
 
-  let changedIngredients = Object.keys(props.ingredients).map(ingKey => {
+  // console.log(Object.keys(props.ingredients));
+  let changedIngredients = Object.keys(props.ingredients).map((ingKey, i) => {
+    // console.log([...Array(props.ingredients[ingKey])])
 
     return [...Array(props.ingredients[ingKey])].map((_, i) => {
 

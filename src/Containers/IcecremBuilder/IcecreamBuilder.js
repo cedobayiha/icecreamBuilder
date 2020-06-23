@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import IceCream from '../../Components/IceCream/IceCream';
 import Controls from '../../Components/IceCream/Controls/Controls';
+import Spinner from '../../Components/UI/Spinner/Spinner'
 // import axios from 'axios';
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../../Components/UI/Modal/Modal';
 import OrderSummary from '../../Components/OrderSummary/OrderSummary';
-import * as actionType from '../../store/actions/action';
+// import withErrorHandler from '../../hoc/'
+// import * as actionType from '../../store/actions/actionTypes';
+
+import * as icecreamActions from '../../store/actions/index';
+
 import { connect } from 'react-redux';
 
 
@@ -23,6 +28,7 @@ class IcecreamBuilder extends Component {
   }
 
   componentDidMount() {
+    this.props.onInitIngrdients()
     // axios.get('https://icecream-3aa92.firebaseio.com/ingredients.json')
     //   .then(res => {
     //     this.setState({ ingredients: res.data })
@@ -105,8 +111,9 @@ class IcecreamBuilder extends Component {
 
   render() {
     let orderOrSpinner = null;
-    let iceCream = null;
+    let iceCream = this.props.error ? <p>Ingredients can't be loaded</p> : <Spinner />;
     let info = { ...this.props.ings };
+
     for (let key in info) {
       info[key] = info[key] <= 0;
     }
@@ -146,19 +153,18 @@ class IcecreamBuilder extends Component {
 const mapStateToProps = state => {
   return {
     ings: state.ingredients,
-    price: state.totalPrice
+    price: state.totalPrice,
+    error: state.error
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddIngredients: (ingName) => dispatch({
-      type: actionType.ADD_INGREDIENT, ingredientsName: ingName
-    }),
-    onRemoveIngredients: (ingName) => dispatch({
-      type: actionType.REMOVE_INGREDIENT, ingredientsName: ingName
-    })
+    onAddIngredients: (ingName) => dispatch(icecreamActions.addIngredient(ingName)),
+    onRemoveIngredients: (ingName) => dispatch(icecreamActions.removeIngredient(ingName)),
+    onInitIngrdients: () => dispatch(icecreamActions.initIngredients())
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(IcecreamBuilder)
+
