@@ -105,6 +105,7 @@ class IcecreamBuilder extends Component {
     // }
     // queryParams.push("price=" + this.state.price.toFixed(2))
     // const queryString = queryParams.join('&')
+    this.props.onInitPurchase();
     this.props.history.push('/checkout')
   }
 
@@ -152,9 +153,9 @@ class IcecreamBuilder extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    error: state.error
+    ings: state.icecreamBuilder.ingredients,
+    price: state.icecreamBuilder.totalPrice,
+    error: state.icecreamBuilder.error
   }
 }
 
@@ -162,9 +163,10 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddIngredients: (ingName) => dispatch(icecreamActions.addIngredient(ingName)),
     onRemoveIngredients: (ingName) => dispatch(icecreamActions.removeIngredient(ingName)),
-    onInitIngrdients: () => dispatch(icecreamActions.initIngredients())
-  }
-}
+    onInitIngrdients: () => dispatch(icecreamActions.initIngredients()),
+    onInitPurchase: () => dispatch(icecreamActions.purchaseInit())
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(IcecreamBuilder)
 

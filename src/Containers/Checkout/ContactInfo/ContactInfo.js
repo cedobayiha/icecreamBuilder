@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Input from '../../../Components/UI/Input/Input';
 import Button from '../../../Components/UI/Button/Button';
-import axios from 'axios';
+// import axios from 'axios';
 import styles from './ContactInfo.module.css';
+import Spinner from '../../../Components/UI/Spinner/Spinner';
+import * as orderActions from '../../../store/actions/index';
 
 class ContactInfo extends Component {
   state = {
@@ -102,8 +104,7 @@ class ContactInfo extends Component {
         valid: true
       }
     },
-    formIsValid: false,
-    ordered: false
+    formIsValid: false
   }
 
   verified = (value, rules) => {
@@ -125,7 +126,7 @@ class ContactInfo extends Component {
   submitHandler = (e) => {
     e.preventDefault();
 
-    this.setState({ ordered: true })
+
     const formInfo = {}
 
     for (let formId in this.state.orderForm) {
@@ -138,22 +139,15 @@ class ContactInfo extends Component {
       orderInfo: formInfo
     }
 
+
+
     if (orderForm.price === 0) {
       alert('Select some icecream flavours')
       this.props.history.push('/')
     }
 
     if (orderForm.price > 2) {
-
-      axios.post('https://icecream-3aa92.firebaseio.com/orders.json', orderForm)
-        .then(res => {
-
-          this.setState({ ordered: false })
-          this.props.history.push('/');
-        })
-        .catch(error => {
-          this.setState({ ordered: false })
-        })
+      this.props.onOrderIcecream(orderForm)
     }
   }
 
@@ -209,6 +203,9 @@ class ContactInfo extends Component {
         </Button>
       </form>
     )
+    if (this.props.loading) {
+      form = <Spinner />
+    }
     return (
       <div className={styles.ContactInfo}>
         <h4>Enter your contact info</h4>
@@ -221,9 +218,16 @@ class ContactInfo extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice
+    ings: state.icecreamBuilder.ingredients,
+    price: state.icecreamBuilder.totalPrice,
+    loading: state.order.loading
   }
 }
 
-export default connect(mapStateToProps)(ContactInfo);
+const mapDispatchToProps = dispatch => {
+  return {
+    onOrderIcecream: (orderInfo) => dispatch(orderActions.purchaseIcecream(orderInfo))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactInfo);

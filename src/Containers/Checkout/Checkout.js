@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import Aux from '../../hoc/Aux/Aux';
 // import styles from '../../Components/IceCream/IceCream.module.css';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import CheckoutSummary from '../../Components/CheckoutSummary/CheckoutSum';
 import ContactInfo from './ContactInfo/ContactInfo';
+// import * as orderActions from "../../store/actions/index";
 
 class Checkout extends Component {
 
@@ -22,6 +24,8 @@ class Checkout extends Component {
   //   this.setState({ ingredients: ingredients, price: price })
   // }
 
+
+
   checkoutCancel = () => {
     this.props.history.goBack()
   }
@@ -32,27 +36,33 @@ class Checkout extends Component {
 
 
   render() {
+    let summary = <Redirect to="/" />
 
-
-    return (
-      <div>
-        <CheckoutSummary ingredients={this.props.ings}
-          cancel={this.checkoutCancel}
-          proceed={this.checkoutProceed}
-
-        />
-        <Route path={this.props.match.path + '/contact-info'} component={ContactInfo} />
-      </div>
-    )
+    if (this.props.ings) {
+      const boughtRedirect = this.props.purchased ? <Redirect to="/" /> : null;
+      summary = (
+        <Aux>
+          {boughtRedirect}
+          <CheckoutSummary ingredients={this.props.ings}
+            cancel={this.checkoutCancel}
+            proceed={this.checkoutProceed}
+          />
+          <Route path={this.props.match.path + '/contact-info'} component={ContactInfo} />
+        </Aux>
+      )
+    }
+    return summary
   }
-
 }
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients
+    ings: state.icecreamBuilder.ingredients,
+    purchased: state.order.bought
   }
 }
+
+
 
 export default connect(mapStateToProps)(Checkout);
 
