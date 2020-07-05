@@ -30,7 +30,7 @@ const controls = (props) => {
           noMas={props.noMas} />
       })}
       <button className={styles.Order}
-        disabled={!props.odrBtn} onClick={props.purchase}>Order Now</button>
+        disabled={!props.odrBtn} onClick={props.purchase}>{props.IsAuth ? "ORDER NOW" : 'SIGN UP TO ORDER'}</button>
     </div>
 
   )

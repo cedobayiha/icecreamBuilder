@@ -22,10 +22,10 @@ export const purchaseIcecreamStart = () => {
   };
 }
 
-export const purchaseIcecream = (orderInfo) => {
+export const purchaseIcecream = (orderInfo, token) => {
   return dispatch => {
     dispatch(purchaseIcecreamStart());
-    axios.post('https://icecream-3aa92.firebaseio.com/orders.json', orderInfo)
+    axios.post('https://icecream-3aa92.firebaseio.com/orders.json?auth=' + token, orderInfo)
       .then(res => {
         console.log(res.data)
         dispatch(purchaseIcecreamSuccess(res.data.name, orderInfo))
@@ -64,20 +64,20 @@ export const fetchOrderStart = () => {
   };
 };
 
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
   return dispatch => {
     dispatch(fetchOrderStart())
-    axios.get('https://icecream-3aa92.firebaseio.com/orders.json')
+    axios.get('https://icecream-3aa92.firebaseio.com/orders.json?auth=' + token)
       .then(res => {
         const receivedInfo = [];
         for (let key in res.data) {
           receivedInfo.push({ ...res.data[key], id: key })
         }
         dispatch(fetchOrdersSuccess(receivedInfo))
-        // this.setState({ orders: receivedInfo, loading: false })
+
       }).catch(error => {
         dispatch(fetchOrdersFail(error))
-        // this.setState({ loading: false })
+
       })
   }
 }

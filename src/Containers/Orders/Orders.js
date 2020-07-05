@@ -13,7 +13,7 @@ class Orders extends Component {
   }
 
   componentDidMount() {
-    this.props.onFecthOrders()
+    this.props.onFecthOrders(this.props.token)
     // axios.get('https://icecream-3aa92.firebaseio.com/orders.json')
     //   .then(res => {
     //     const receivedInfo = [];
@@ -46,13 +46,14 @@ class Orders extends Component {
 const mapStateToProps = (state) => {
   return {
     orders: state.order.orders,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFecthOrders: () => dispatch(fetchActions.fetchOrders())
+    onFecthOrders: (token) => dispatch(fetchActions.fetchOrders(token))
   }
 }
 

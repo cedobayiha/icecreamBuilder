@@ -13,7 +13,7 @@ const Toolbar = (props) => {
       <Drawer click={props.open} />
 
       <nav className={styles.DesktopOnly}>
-        <NavItems />
+        <NavItems isAuth={props.isAuth} />
       </nav>
     </header>
   )

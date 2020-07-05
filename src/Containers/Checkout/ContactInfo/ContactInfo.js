@@ -125,8 +125,6 @@ class ContactInfo extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-
-
     const formInfo = {}
 
     for (let formId in this.state.orderForm) {
@@ -139,15 +137,13 @@ class ContactInfo extends Component {
       orderInfo: formInfo
     }
 
-
-
     if (orderForm.price === 0) {
       alert('Select some icecream flavours')
       this.props.history.push('/')
     }
 
     if (orderForm.price > 2) {
-      this.props.onOrderIcecream(orderForm)
+      this.props.onOrderIcecream(orderForm, this.props.token)
     }
   }
 
@@ -220,13 +216,14 @@ const mapStateToProps = state => {
   return {
     ings: state.icecreamBuilder.ingredients,
     price: state.icecreamBuilder.totalPrice,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderIcecream: (orderInfo) => dispatch(orderActions.purchaseIcecream(orderInfo))
+    onOrderIcecream: (orderInfo, token) => dispatch(orderActions.purchaseIcecream(orderInfo, token))
   }
 }
 

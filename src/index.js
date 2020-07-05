@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import icecreamReducer from './store/reducers/IcecreamReducer';
 import orderReducer from './store/reducers/order';
 import thunk from 'redux-thunk';
+import authReducer from './store/reducers/Auth';
 
 
 
@@ -16,7 +17,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   icecreamBuilder: icecreamReducer,
-  order: orderReducer
+  order: orderReducer,
+  auth: authReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))

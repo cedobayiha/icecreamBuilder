@@ -14,14 +14,6 @@ import * as icecreamActions from '../../store/actions/index';
 import { connect } from 'react-redux';
 
 
-// let prices = {
-//   mango: 2.50,
-//   vanilla: 1.80,
-//   mint: 2.50,
-//   strawberry: 2.10,
-//   chocolate: 2.25
-// }
-
 class IcecreamBuilder extends Component {
   state = {
     purchasing: false
@@ -29,43 +21,9 @@ class IcecreamBuilder extends Component {
 
   componentDidMount() {
     this.props.onInitIngrdients()
-    // axios.get('https://icecream-3aa92.firebaseio.com/ingredients.json')
-    //   .then(res => {
-    //     this.setState({ ingredients: res.data })
-    //   })
+
   }
 
-
-  // addIngredientsHandler = (type) => {
-
-  //   const oldCount = this.state.ingredients[type];
-  //   const newCount = oldCount + 1;
-  //   const updatedIngredients = { ...this.state.ingredients }
-  //   updatedIngredients[type] = newCount;
-  //   const priceAddition = prices[type];
-  //   const oldPrice = this.state.price;
-  //   const newPrice = priceAddition + oldPrice;
-  //   this.setState({
-  //     ingredients: updatedIngredients, price: newPrice
-  //   })
-  //   this.updatePurchaseHandler(updatedIngredients);
-  // }
-
-  // removeIngredientsHandler = (type) => {
-
-  //   let oldCount = this.state.ingredients[type];
-  //   let newCount = null;
-  //   if (oldCount > 0) {
-  //     newCount = oldCount - 1
-  //   }
-  //   const updatedIngredients = { ...this.state.ingredients };
-  //   updatedIngredients[type] = newCount;
-  //   const priceSub = prices[type];
-  //   const currentPrice = this.state.price;
-  //   const newPrice = currentPrice - priceSub;
-  //   this.setState({ ingredients: updatedIngredients, price: newPrice })
-  //   this.updatePurchaseHandler(updatedIngredients);
-  // }
 
   updatePurchaseHandler = (ingredients) => {
     const sum = Object.keys(ingredients).map(igKey => {
@@ -90,7 +48,12 @@ class IcecreamBuilder extends Component {
 
 
   purchaseHandler = () => {
-    this.setState({ purchasing: true })
+    if (this.props.isAuth) {
+      this.setState({ purchasing: true })
+    } else {
+      this.props.history.push('/auth')
+    }
+
   }
 
   cancelPurchaseHandler = () => {
@@ -123,6 +86,7 @@ class IcecreamBuilder extends Component {
         <Aux>
           <IceCream ingredients={this.props.ings} />
           <Controls
+            isAuth={this.props.isAuth}
             ingredients={this.props.ings}
             disabled={info}
             price={this.props.price}
@@ -155,7 +119,8 @@ const mapStateToProps = state => {
   return {
     ings: state.icecreamBuilder.ingredients,
     price: state.icecreamBuilder.totalPrice,
-    error: state.icecreamBuilder.error
+    error: state.icecreamBuilder.error,
+    isAuth: state.auth.token !== null
   }
 }
 

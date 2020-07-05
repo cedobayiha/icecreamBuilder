@@ -12,9 +12,15 @@ const NavItems = (props) => {
         iceCream Builder
       </NavItem>
 
-      <NavItem link="/orders">
+      {props.isAuth ? <NavItem link="/orders">
         Orders
+        </NavItem> : null}
+      {props.isAuth ? <NavItem link="/logout">
+        Log out
+        </NavItem> : <NavItem link="/auth">
+          Log in
         </NavItem>
+      }
     </ul>
   )
 }

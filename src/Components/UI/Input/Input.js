@@ -13,7 +13,7 @@ const input = (props) => {
   switch (props.elemtype) {
     case ('input'):
       inputVar = <input className={inputStyles.join(' ')}
-        {...props.elemCofig}
+        {...props.elemConfig}
         onChange={props.change}
         value={props.value}
         placeholder={props.placeholder} />;
