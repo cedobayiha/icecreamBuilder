@@ -25,6 +25,7 @@ export const purchaseIcecreamStart = () => {
 export const purchaseIcecream = (orderInfo, token) => {
   return dispatch => {
     dispatch(purchaseIcecreamStart());
+
     axios.post('https://icecream-3aa92.firebaseio.com/orders.json?auth=' + token, orderInfo)
       .then(res => {
         console.log(res.data)
@@ -64,10 +65,11 @@ export const fetchOrderStart = () => {
   };
 };
 
-export const fetchOrders = (token) => {
+export const fetchOrders = (token, userId) => {
   return dispatch => {
     dispatch(fetchOrderStart())
-    axios.get('https://icecream-3aa92.firebaseio.com/orders.json?auth=' + token)
+    const queryParams = "?auth=" + token + '&orderBy="userId"&equalTo="' + userId + '"';
+    axios.get('https://icecream-3aa92.firebaseio.com/orders.json' + queryParams)
       .then(res => {
         const receivedInfo = [];
         for (let key in res.data) {

@@ -51,6 +51,7 @@ class IcecreamBuilder extends Component {
     if (this.props.isAuth) {
       this.setState({ purchasing: true })
     } else {
+      this.props.onSetRedirectPath('/checkout')
       this.props.history.push('/auth')
     }
 
@@ -129,7 +130,8 @@ const mapDispatchToProps = dispatch => {
     onAddIngredients: (ingName) => dispatch(icecreamActions.addIngredient(ingName)),
     onRemoveIngredients: (ingName) => dispatch(icecreamActions.removeIngredient(ingName)),
     onInitIngrdients: () => dispatch(icecreamActions.initIngredients()),
-    onInitPurchase: () => dispatch(icecreamActions.purchaseInit())
+    onInitPurchase: () => dispatch(icecreamActions.purchaseInit()),
+    onSetRedirectPath: (path) => dispatch(icecreamActions.setAuthRedirectPath(path))
   };
 };
 

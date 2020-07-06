@@ -3,5 +3,5 @@ export { addIngredient, removeIngredient, initIngredients } from './IcecreamBuil
 export { purchaseIcecream, purchaseInit, fetchOrders } from './order';
 
 export {
-  auth, logout, setAuthRedirectPath
+  auth, logout, setAuthRedirectPath, authVerifyState
 } from './Auth'

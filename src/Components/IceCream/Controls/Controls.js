@@ -12,7 +12,14 @@ const controlz = [
 ]
 
 const controls = (props) => {
-
+  let btn = null;
+  if (props.isAuth) {
+    btn = <button className={styles.Order}
+      disabled={!props.odrBtn} onClick={props.purchase}>ORDER NOW</button>
+  } else {
+    btn = <button className={styles.Order}
+      disabled={!props.odrBtn} onClick={props.purchase}> SIGN UP TO ORDER</button>
+  }
 
   return (
 
@@ -29,8 +36,8 @@ const controls = (props) => {
           disabled={props.disabled[ctrl.type]}
           noMas={props.noMas} />
       })}
-      <button className={styles.Order}
-        disabled={!props.odrBtn} onClick={props.purchase}>{props.IsAuth ? "ORDER NOW" : 'SIGN UP TO ORDER'}</button>
+
+      {btn}
     </div>
 
   )

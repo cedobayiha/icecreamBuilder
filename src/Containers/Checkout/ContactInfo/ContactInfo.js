@@ -134,7 +134,8 @@ class ContactInfo extends Component {
     const orderForm = {
       ingredients: this.props.ings,
       price: this.props.price,
-      orderInfo: formInfo
+      orderInfo: formInfo,
+      userId: this.props.userId
     }
 
     if (orderForm.price === 0) {
@@ -217,7 +218,8 @@ const mapStateToProps = state => {
     ings: state.icecreamBuilder.ingredients,
     price: state.icecreamBuilder.totalPrice,
     loading: state.order.loading,
-    token: state.auth.token
+    token: state.auth.token,
+    userId: state.auth.userId
   }
 }
 
