@@ -33,7 +33,7 @@ export const initIngredients = () => {
     axios.get('https://icecream-3aa92.firebaseio.com/ingredients.json')
       .then(res => {
         dispatch(setIngredients(res.data))
-        // ingredients: res.data
+
       })
       .catch(error => {
         dispatch(fetchIngredientsFailed())

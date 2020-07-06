@@ -28,7 +28,6 @@ export const purchaseIcecream = (orderInfo, token) => {
 
     axios.post('https://icecream-3aa92.firebaseio.com/orders.json?auth=' + token, orderInfo)
       .then(res => {
-        console.log(res.data)
         dispatch(purchaseIcecreamSuccess(res.data.name, orderInfo))
       })
       .catch(error => {

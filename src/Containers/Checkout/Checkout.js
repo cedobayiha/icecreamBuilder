@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Aux from '../../hoc/Aux/Aux';
-// import styles from '../../Components/IceCream/IceCream.module.css';
+
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom'
 import CheckoutSummary from '../../Components/CheckoutSummary/CheckoutSum';
 import ContactInfo from './ContactInfo/ContactInfo';
-// import * as orderActions from "../../store/actions/index";
+
 
 class Checkout extends Component {
 

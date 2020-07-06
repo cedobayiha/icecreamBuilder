@@ -6,8 +6,6 @@ import styles from './CheckoutSum.module.css';
 import Aux from '../../hoc/Aux/Aux';
 
 const checkoutSummary = (props) => {
-
-
   return (
     <Aux>
       <div className={styles.Contain}>

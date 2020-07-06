@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import IceCream from '../../Components/IceCream/IceCream';
 import Controls from '../../Components/IceCream/Controls/Controls';
 import Spinner from '../../Components/UI/Spinner/Spinner'
-// import axios from 'axios';
+
 import Aux from '../../hoc/Aux/Aux';
 import Modal from '../../Components/UI/Modal/Modal';
 import OrderSummary from '../../Components/OrderSummary/OrderSummary';
-// import withErrorHandler from '../../hoc/'
-// import * as actionType from '../../store/actions/actionTypes';
+
 
 import * as icecreamActions from '../../store/actions/index';
 

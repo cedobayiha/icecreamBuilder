@@ -7,10 +7,7 @@ import * as fetchActions from "../../store/actions/index";
 import Spinner from '../../Components/UI/Spinner/Spinner';
 
 class Orders extends Component {
-  state = {
-    // orders: [],
-    // loading: true
-  }
+
 
   componentDidMount() {
     this.props.onFecthOrders(this.props.token, this.props.userId)
