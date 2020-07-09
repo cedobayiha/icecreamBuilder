@@ -13,16 +13,14 @@ import * as icecreamActions from '../../store/actions/index';
 import { connect } from 'react-redux';
 
 
-class IcecreamBuilder extends Component {
+export class IcecreamBuilder extends Component {
   state = {
     purchasing: false
   }
 
   componentDidMount() {
-    this.props.onInitIngrdients()
-
+    this.props.onInitIngredients()
   }
-
 
   updatePurchaseHandler = (ingredients) => {
     const sum = Object.keys(ingredients).map(igKey => {
@@ -128,7 +126,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddIngredients: (ingName) => dispatch(icecreamActions.addIngredient(ingName)),
     onRemoveIngredients: (ingName) => dispatch(icecreamActions.removeIngredient(ingName)),
-    onInitIngrdients: () => dispatch(icecreamActions.initIngredients()),
+    onInitIngredients: () => dispatch(icecreamActions.initIngredients()),
     onInitPurchase: () => dispatch(icecreamActions.purchaseInit()),
     onSetRedirectPath: (path) => dispatch(icecreamActions.setAuthRedirectPath(path))
   };
